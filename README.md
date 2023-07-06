@@ -10,7 +10,8 @@ Proyecto para el ramo Computación Científica
 * ctypes
 
 ## Uso
-* Ejecutar con `$ python main.py` o `python3 main.py`
+* Abrir una terminal en la carpeta donde se encuentre main.py
+* Ejecutar con `$ python main.py` o `$ python3 main.py`
 * La cara sur-oeste es A (el norte de la textura, es el norte de la cara), la sur-este es B (el norte de la textura, es el norte de la cara), y la norte es C (el norte de la textura es el nor-este de la cara)
 * Apretar 0, ..., 6 para elegir un vértice:
   * 0 es el vertice central
