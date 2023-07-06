@@ -1,0 +1,31 @@
+#version 330 core
+
+in vec2 fragmentTexCoor;
+in vec4 fragmentColor;
+
+uniform sampler2D imageTextureA;
+uniform sampler2D imageTextureB;
+uniform sampler2D imageTextureC;
+
+out vec4 color;
+
+void main()
+{
+    float flag = fragmentColor[3];
+
+    if(flag == 0)
+    {
+        color = vec4(fragmentColor[0], fragmentColor[1], fragmentColor[2], 1.0) * texture(imageTextureA, fragmentTexCoor);
+    }
+
+    if(flag == 1)
+    {
+        color = vec4(fragmentColor[0], fragmentColor[1], fragmentColor[2], 1.0) * texture(imageTextureB, fragmentTexCoor);
+    }
+
+    if(flag == 2)
+    {
+        color = vec4(fragmentColor[0], fragmentColor[1], fragmentColor[2], 1.0) * texture(imageTextureC, fragmentTexCoor);
+    }
+
+}

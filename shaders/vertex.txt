@@ -1,0 +1,51 @@
+#version 330 core
+
+layout (location=0) in vec3 vertexPos;
+layout (location=1) in vec2 vertexTexCoor;
+
+uniform float cA[8];
+uniform float cB[8];
+uniform float cC[8];
+uniform float colorA[3];
+uniform float colorB[3];
+uniform float colorC[3];
+
+out vec2 fragmentTexCoor;
+out vec4 fragmentColor;
+
+void main()
+{
+    float x, y, flag, u, v;
+
+    float color[3];
+
+    x = vertexPos[0];
+    y = vertexPos[1];
+    flag = vertexPos[2];
+
+    if(flag == 0)
+    {
+        color = colorA;
+        u = (cA[0]*x + cA[1]*y + cA[2]) / (cA[6]*x + cA[7]*y + 1);
+        v = (cA[3]*x + cA[4]*y + cA[5]) / (cA[6]*x + cA[7]*y + 1);
+    }
+
+    if(flag == 1)
+    {
+        color = colorB;
+        u = (cB[0]*x + cB[1]*y + cB[2]) / (cB[6]*x + cB[7]*y + 1);
+        v = (cB[3]*x + cB[4]*y + cB[5]) / (cB[6]*x + cB[7]*y + 1);
+    }
+
+    if(flag == 2)
+    {
+        color = colorC;
+        u = (cC[0]*x + cC[1]*y + cC[2]) / (cC[6]*x + cC[7]*y + 1);
+        v = (cC[3]*x + cC[4]*y + cC[5]) / (cC[6]*x + cC[7]*y + 1);
+    }
+
+    gl_Position = vec4(u, v, 0.0, 1.0);
+
+    fragmentTexCoor = vertexTexCoor;
+    fragmentColor = vec4(color[0], color[1], color[2], flag);
+}

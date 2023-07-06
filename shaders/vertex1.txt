@@ -1,0 +1,50 @@
+#version 330 core
+
+layout (location=0) in vec3 vertexPosA;
+layout (location=1) in vec3 vertexPosB;
+layout (location=2) in vec3 vertexPosC;
+layout (location=3) in vec3 vertexColor;
+
+uniform float cA[8];
+uniform float cB[8];
+uniform float cC[8];
+
+out vec3 fragmentColor;
+
+void main()
+{
+    float x, y, z, u, v;
+
+    if (vertexPosA[2] == 0.0)
+    {
+        x = vertexPosA[0];
+        y = vertexPosA[1];
+        z = vertexPosA[2];
+
+        u = (cA[0]*x + cA[1]*y + cA[2]) / (cA[6]*x + cA[7]*y + 1);
+        v = (cA[3]*x + cA[4]*y + cA[5]) / (cA[6]*x + cA[7]*y + 1);
+    }
+
+    if (vertexPosB[2] == 0.0)
+    {
+        x = vertexPosB[0];
+        y = vertexPosB[1];
+        z = vertexPosB[2];
+
+        u = (cB[0]*x + cB[1]*y + cB[2]) / (cB[6]*x + cB[7]*y + 1);
+        v = (cB[3]*x + cB[4]*y + cB[5]) / (cB[6]*x + cB[7]*y + 1);
+    }
+
+    if (vertexPosC[2] == 0.0)
+    {
+        x = vertexPosC[0];
+        y = vertexPosC[1];
+        z = vertexPosC[2];
+
+        u = (cC[0]*x + cC[1]*y + cC[2]) / (cC[6]*x + cC[7]*y + 1);
+        v = (cC[3]*x + cC[4]*y + cC[5]) / (cC[6]*x + cC[7]*y + 1);
+    }
+
+    gl_Position = vec4(u, v, z, 1.0);
+    fragmentColor = vertexColor;
+}
