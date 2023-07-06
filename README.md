@@ -1,5 +1,5 @@
 # proyecto-inf451
-Proyecto para el ramo Computación Científica
+Proyecto para el ramo Computación Gráfica USM 2023-1
 
 ## Dependencias
 * Python 3.X.X
